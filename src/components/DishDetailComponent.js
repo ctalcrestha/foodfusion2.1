@@ -1,55 +1,47 @@
-import React from 'react'
+import React, {Component} from 'react'
 import { Card, CardImg, CardBody, CardTitle, CardText, CardHeader } from 'reactstrap'
 
 
 // initialy -> null
-const RenderDishDetail = ({ dish }) => {
-
-    return (//object of a dish -> name , id, image, description
-        <Card>
-            <CardImg top src={dish.image} alt={dish.name} />
-            <CardBody>
-                <CardTitle>{dish.name}</CardTitle>
-                <CardText>{dish.description}</CardText>
-            </CardBody>
-        </Card>
-    )
-}
-
-const RenderComment = ({comments}) => {
+const DishDetailComponent = (props) => {
+ if (props.dishSelected != null){
     return (
-        <>
-            <h2>Comments</h2>
-            {comments.map(comment => (
-                <ul className="list-unstyled">
-                    <li>{comment.comment}</li>
-                    <li>{`-- ${comment.author}, ${comment.date}`}</li>
-                </ul>
-            ))}
-        </>
-    )
-}
-
-
-function DishDetail(props) {
-    if (props.dish != null) {
-        return (
-            <div className='row'>
+        <div className="container">
+            <div className="row">
                 <div className="col-12 col-md-5 m-1">
-                    <RenderDishDetail dish={props.dish} />
-                </div>
-                <div className="col-12 col-md-5 m-1">
-                    <RenderComment comments={props.dish.comments}/>
-                </div>
+                   <Card>
+                         <CardImg top src={props.dishSelected.image} alt={props.dishSelected.name} />
+                         <CardBody>
+                             <CardTitle>{props.dishSelected.name}</CardTitle>
+                               <CardText>{props.dishSelected.description}</CardText>
+                         </CardBody>
+                  </Card>
+                </div> 
+               <div className="co-12 col-md-5 m-1">
+                     <h2>Comments</h2>
+                      {props.dishSelected.comments.map(comment => (
+                    <ul className="list-unstyled">
+                         <li>{comment.comment}</li>
+                         <li>{`-- ${comment.author}`}, {new Intl.DateTimeFormat('en-US',{year:"numeric", month:"short", day:'2-digit'}).format(new Date(Date.parse(comment.date)))}</li>
+                    </ul> ))}
+               </div>
+       
             </div>
-        )
-    }
-    else {
-        return (
-            <div></div>
-        )
-    }
+        </div>
+       
+        
+    )
+      
+ }
+ else{
+   return (
+     <div></div>
+   )
+ }
+      
+    
 }
+   
 
 
-export default DishDetail
+export default DishDetailComponent
