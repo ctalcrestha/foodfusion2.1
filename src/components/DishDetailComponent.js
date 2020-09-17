@@ -2,7 +2,6 @@ import React from 'react'
 import { Card, CardImg, CardBody, CardTitle, CardText, CardHeader } from 'reactstrap'
 
 
-
 const RenderItem = ({ dish }) => {
   return (
 
