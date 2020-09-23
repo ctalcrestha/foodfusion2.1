@@ -25,7 +25,7 @@ export const DISHES =
     {
       id: 2,
       name: 'Doughnut',
-      image: 'assets/images/doughnut.png',
+      image: 'assets/images/dougnut.png',
       category: 'appetizer',
       label: 'New',
       price: '1.99',
