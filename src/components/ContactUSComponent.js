@@ -6,6 +6,11 @@ import { Control, LocalForm, Errors } from 'react-redux-form'
 
 
 
+const required = (val) => val && val.length;
+const maxLength = (len) => (val) => !(val) || (val.length <= len);
+const minLength = (len) => (val) => val && (val.length >= len);
+const isNumber = (val) => !isNaN(Number(val));
+const validEmail = (val) => /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(val);
 class ContactUSComponent extends Component {
 
     constructor(props) {
@@ -94,9 +99,9 @@ class ContactUSComponent extends Component {
     //     `)
     // }
 
-handelSubmit(values){
-    alert('CUrrent State is:'  + JSON.stringify(values));
-}
+    handelSubmit(values) {
+        alert('CUrrent State is:' + JSON.stringify(values));
+    }
 
     render() {
         // const error = this.validate(this.state.firstname, this.state.lastname, this.state.telnum, this.state.email);
@@ -272,34 +277,95 @@ handelSubmit(values){
 
                         </Form> */}
                         <LocalForm onSubmit={(values) => this.handelSubmit(values)}>
-                            
+
                             <div className='form-group row'>
-                                <Label md={2}>First Name</Label>
+                                <Label htmlFor='firstname' md={2}>First Name</Label>
                                 <Col md={10}>
-                                    <Control.text model='.firstname' id="firstname"
-                                        name="firstname" placeholder="Enter Your First Name" className="form-control" />
+                                    <Control.text model='.firstname'
+                                        id="firstname"
+                                        name="firstname"
+                                        placeholder="Enter Your First Name"
+                                        className="form-control"
+                                        validators={{
+                                            required, minLength: minLength(3), maxLength: maxLength(10)
+                                        }} />
+                                    <Errors
+                                        className="text-danger"
+                                        model=".firstname"
+                                        show='touched'
+                                        messages={{
+                                            required: "Required ",
+                                            minLength: " Must be greater than 2 characters",
+                                            maxLength: " Must be less than 10 characters"
+                                        }}
+
+                                    />
+
+
                                 </Col>
                             </div>
                             <div className='form-group row'>
-                                <Label md={2}>Last Name</Label>
+                                <Label htmlFor='lastname' md={2}>Last Name</Label>
                                 <Col md={10}>
                                     <Control.text model='.lastname' id="lastname"
-                                        name="lastname" placeholder="Enter Your Last Name" className="form-control" />
+                                        name="lastname" placeholder="Enter Your Last Name" className="form-control"
+                                        validators={{
+                                            required, minLength: minLength(3), maxLength: maxLength(10)
+                                        }} />
+                                    <Errors
+                                        className="text-danger"
+                                        model=".lastname"
+                                        show='touched'
+                                        messages={{
+                                            required: "Required ",
+                                            minLength: " Must be greater than 2 characters",
+                                            maxLength: " Must be less than 10 characters"
+                                        }}
+
+                                    />
                                 </Col>
                             </div>
-                          
+
                             <div className='form-group row'>
-                                <Label md={2}>Contact Tel.</Label>
+                                <Label htmlFor='telnum' md={2}>Contact Tel.</Label>
                                 <Col md={10}>
                                     <Control.text model='.telnum' id="telnum"
-                                        name="telnum" placeholder="Enter Your Contact Number" className="form-control" />
+                                        name="telnum" placeholder="Enter Your Contact Number" className="form-control" validators={{
+                                            required, minLength: minLength(3), maxLength: maxLength(10), isNumber
+                                        }} />
+                                    <Errors
+                                        className="text-danger"
+                                        model=".telnum"
+                                        show='touched'
+                                        messages={{
+                                            required: "Required ",
+                                            minLength: " Must be greater than 2 characters",
+                                            maxLength: " Must be less than 10 characters",
+                                            isNumber: " Must be a number"
+                                        }}
+
+                                    />
                                 </Col>
                             </div>
                             <div className='form-group row'>
-                                <Label md={2}>Email</Label>
+                                <Label htmlFor='email' md={2}>Email</Label>
                                 <Col md={10}>
                                     <Control.text model='.email' id="email"
-                                        name="email" placeholder="Enter Your Email" className="form-control" />
+                                        name="email" placeholder="Enter Your Email" className="form-control"
+                                        validators={{
+                                            required, validEmail
+                                        }} />
+                                    <Errors
+                                        className="text-danger"
+                                        model=".email"
+                                        show='touched'
+                                        messages={{
+                                            required: "Required ",
+                                            validEmail: "Invalid Email Address"
+                                        }}
+
+                                    />
+                                     
                                 </Col>
                             </div>
                             <div className='form-group row'>
@@ -322,23 +388,23 @@ handelSubmit(values){
 
                                 </Col>
                             </div>
-                           <div className="form-group row">
-                               <Label md={2} >Your Feedback</Label>
+                            <div className="form-group row">
+                                <Label htmlFor='message' md={2} >Your Feedback</Label>
                                 <Col md={10}>
                                     <Control.textarea model=".message" id="message" name="message"
-                                    rows="8" className='form-control'/>
+                                        rows="8" className='form-control' />
 
                                 </Col>
-                           </div>
-                           <div className="form-group row">
-                               <Col md={{size:10, offset:2}}>
-                                   <Button type='submit' color='primary'>
-                                       Send Feedback
+                            </div>
+                            <div className="form-group row">
+                                <Col md={{ size: 10, offset: 2 }}>
+                                    <Button type='submit' color='primary'>
+                                        Send Feedback
 
                                    </Button>
-                               </Col>
+                                </Col>
 
-                           </div>
+                            </div>
                         </LocalForm>
 
 
