@@ -72,7 +72,7 @@ class HeaderComponent extends Component {
                 <Navbar dark expand='md'>
                     <div className='container'>
                         <NavbarToggler onClick={this.toggleNav} />
-                        <NavbarBrand herf='/'>
+                        <NavbarBrand herf='/home'>
                             Food Fusion
                           </NavbarBrand>
                         <Collapse isOpen={this.state.isNavOpen} navbar>
