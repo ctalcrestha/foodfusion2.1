@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { Card, CardImg, CardBody, CardTitle, CardText, CardHeader, Breadcrumb, BreadcrumbItem } from 'reactstrap'
-
+import CommentForm from './CommentForm'
 
 const RenderItem = ({ dish }) => {
 
@@ -16,19 +16,22 @@ const RenderItem = ({ dish }) => {
     </Card>
   )
 }
+
 const RenderComment = ({ comments }) => {
   return (
-    <div key={comments.id}>
+    <React.Fragment>
+
       <h2>Comments</h2>
       {comments.map(comment => (
         <ul className="list-unstyled">
           <li>{comment.comment}</li>
           <li>{`-- ${comment.author}`}, {new Intl.DateTimeFormat('en-US', { year: "numeric", month: "short", day: '2-digit' }).format(new Date(Date.parse(comment.date)))}</li>
         </ul>))}
-
-    </div>
-
-
+             <CommentForm/>
+     
+    </React.Fragment>
+   
+    
   )
 }
 
