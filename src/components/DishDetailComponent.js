@@ -17,20 +17,22 @@ const RenderItem = ({ dish }) => {
   )
 }
 
-const RenderComment = ({ comments }) => {
+const RenderComment = ({ comments, dishId, addComment }) => {
   return (
-    <React.Fragment>
-
-      <h2>Comments</h2>
+    
+<div>
+<h2>Comments</h2>
       {comments.map(comment => (
         <ul className="list-unstyled">
           <li>{comment.comment}</li>
           <li>{`-- ${comment.author}`}, {new Intl.DateTimeFormat('en-US', { year: "numeric", month: "short", day: '2-digit' }).format(new Date(Date.parse(comment.date)))}</li>
         </ul>))}
-             <CommentForm/>
+        {/* dishId={diahId} dishdetailComponent -> dishId stored in a new var/prop i.e dishId */}
+        
+             <CommentForm dishId={dishId} addComment={addComment}/>
      
-    </React.Fragment>
-   
+</div>
+     
     
   )
 }
@@ -58,7 +60,7 @@ const DishDetailComponent = (props) => {
         </div>
         <div className="co-12 col-md-5 m-1">
 
-          <RenderComment comments={props.comments} />
+          <RenderComment comments={props.comments} dishId={props.dish.id} addComment={props.addComment} />
 
         </div>
 
