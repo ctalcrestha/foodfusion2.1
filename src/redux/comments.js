@@ -1,4 +1,3 @@
-import { connect } from 'react-redux';
 import{ COMMENTS } from '../shared/comments';
 import * as ActionType from './ActionTypes';
 

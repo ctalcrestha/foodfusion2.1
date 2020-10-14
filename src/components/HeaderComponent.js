@@ -112,7 +112,7 @@ class HeaderComponent extends Component {
                 </Navbar>
                 <Jumbotron>
                     <div className='container'>
-                        <div classNamerow=' row header__row' >
+                        <div className row=' row header__row' >
                             <div className='col-12 col-sm-6'>
                                 <h1>Food Fusion</h1>
                                 <p>We take inspiration from the World's best cuisines, and create a unique fusion experience. Our lipsmacking creations will tickle your culinary senses!</p>
