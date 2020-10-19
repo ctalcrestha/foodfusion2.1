@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import { Breadcrumb, BreadcrumbItem, Form, FormGroup, Label, Input, Col, Button, FormFeedback } from 'reactstrap'
+import { Breadcrumb, BreadcrumbItem,  Label,  Col, Button, Form,  } from 'reactstrap'
 import '../css/Contactus.css';
-import { Control, LocalForm, Errors } from 'react-redux-form'
+import { Control, Errors } from 'react-redux-form'
 
 
 
@@ -101,6 +101,7 @@ class ContactUSComponent extends Component {
 
     handelSubmit(values) {
         alert('CUrrent State is:' + JSON.stringify(values));
+    this.props.resetFrom();
     }
 
     render() {
@@ -276,7 +277,7 @@ class ContactUSComponent extends Component {
                             </FormGroup>
 
                         </Form> */}
-                        <LocalForm onSubmit={(values) => this.handelSubmit(values)}>
+                        <Form model="feedback" onSubmit={(values) => this.handelSubmit(values)}>
 
                             <div className='form-group row'>
                                 <Label htmlFor='firstname' md={2}>First Name</Label>
@@ -405,7 +406,7 @@ class ContactUSComponent extends Component {
                                 </Col>
 
                             </div>
-                        </LocalForm>
+                        </Form>
 
 
                     </div>
