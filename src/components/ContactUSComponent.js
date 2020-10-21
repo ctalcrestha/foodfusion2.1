@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import { Breadcrumb, BreadcrumbItem,  Label,  Col, Button, Form,  } from 'reactstrap'
+import { Breadcrumb, BreadcrumbItem,  Label,  Col, Button } from 'reactstrap'
 import '../css/Contactus.css';
-import { Control, Errors } from 'react-redux-form'
+import { Control, Errors, Form } from 'react-redux-form'
 
 
 
@@ -12,6 +12,8 @@ const minLength = (len) => (val) => val && (val.length >= len);
 const isNumber = (val) => !isNaN(Number(val));
 const validEmail = (val) => /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(val);
 class ContactUSComponent extends Component {
+
+    
 
     constructor(props) {
         super(props)
@@ -96,15 +98,18 @@ class ContactUSComponent extends Component {
     //     agree:${this.state.agree},
     //     contactType:${this.state.contactType},
     //     message:${this.state.message},
-    //     `)
+    //     `)s
     // }
 
     handelSubmit(values) {
-        alert('CUrrent State is:' + JSON.stringify(values));
-    this.props.resetFrom();
+     
+    alert('Current State is:' + JSON.stringify(values));
+    this.props.resetForm();
     }
 
+
     render() {
+    
         // const error = this.validate(this.state.firstname, this.state.lastname, this.state.telnum, this.state.email);
         return (
             <div className="container">

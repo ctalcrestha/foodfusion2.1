@@ -16,7 +16,7 @@ import About from './AboutUSComponents';
 //store
 import {connect} from 'react-redux';
 import {addComment,  fetchDishes} from '../redux/ActionCreators';
-import {action} from 'react-redux-form';
+import { actions} from 'react-redux-form';
 //mapStateToProps ->  takes the current state from the store and convert it intoa prop to be used by the respective component 
 
 
@@ -31,7 +31,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => ({
   addComment: (dishId, rating, author, comment) => dispatch(addComment(dishId, rating, author, comment)),
   fetchDishes: () => { dispatch(fetchDishes())},
-  resetFeedbackForm: () => {dispatch(action.reset('feedback'))}
+  resetFeedbackForm: () => {dispatch(actions.reset('feedback'))}
 })
 class Main extends Component {
 
